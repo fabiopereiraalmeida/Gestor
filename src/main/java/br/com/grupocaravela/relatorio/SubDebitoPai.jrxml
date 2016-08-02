@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-07-25T16:28:03 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SubDebito" pageWidth="801" pageHeight="595" orientation="Landscape" columnWidth="801" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Error" uuid="eac7f807-b02f-449c-a7c4-d91bf689bd81">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GESTOR"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Dialog" fontSize="26" isBold="true"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Dialog" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Dialog" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Dialog" fontSize="12"/>
+	<parameter name="ENTIDADE" class="java.lang.String"/>
+	<parameter name="DATA_INICIAL_SQL" class="java.lang.String"/>
+	<parameter name="DATA_FINAL_SQL" class="java.lang.String"/>
+	<parameter name="ENTIDADE_PAI" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT gestor.debito.nome,
+	gestor.debito.valor,
+	gestor.debito.data_debito,
+	gestor.pessoa.nome,
+	gestor.entidade.nome,
+	gestor.entidade.entidade_id,
+	gestor.debito.entidade_id,
+	gestor.entidade.id
+FROM gestor.debito
+	INNER JOIN gestor.entidade ON 
+	 gestor.debito.entidade_id = gestor.entidade.id 
+	INNER JOIN gestor.pessoa ON 
+	 gestor.debito.pessoa_id = gestor.pessoa.id 
+WHERE 
+	 gestor.debito.data_debito BETWEEN $P{DATA_INICIAL_SQL} AND $P{DATA_FINAL_SQL} 
+	 AND gestor.entidade.entidade_id LIKE $P{ENTIDADE_PAI}
+	 OR gestor.debito.data_debito BETWEEN $P{DATA_INICIAL_SQL} AND $P{DATA_FINAL_SQL} 
+	 AND gestor.debito.entidade_id LIKE $P{ENTIDADE_PAI}]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="valor" class="java.lang.Double"/>
+	<field name="data_debito" class="java.sql.Date"/>
+	<field name="COLUMN_4" class="java.lang.String"/>
+	<field name="COLUMN_5" class="java.lang.String"/>
+	<variable name="valor1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="33">
+			<staticText>
+				<reportElement x="0" y="0" width="800" height="30" uuid="45e9c4f1-0140-46dc-9076-98b71677457c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Dialog" size="16"/>
+				</textElement>
+				<text><![CDATA[Débitos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27">
+			<staticText>
+				<reportElement x="0" y="0" width="237" height="23" uuid="a6cba02e-e63b-4cde-84a9-349250e8012e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="0" width="80" height="23" uuid="8629daee-4ea6-41dd-b588-4acf6471df92"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="0" width="83" height="23" uuid="dd7d8e38-6591-413c-9fc9-6beef8d6cdf3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[Data débito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="180" height="23" uuid="62628f0e-5ef3-4446-8dad-8bcba030ab17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[Pessoa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="0" width="220" height="23" uuid="fc12bfee-e52a-48a4-a595-b183792aa206"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Dialog"/>
+				</textElement>
+				<text><![CDATA[Entidade]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="23" width="800" height="1" uuid="be8982a7-6562-417f-b8c4-7ce3b8c47386"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="17" width="800" height="1" uuid="39f48c34-b6ee-47f7-8876-c3aaee1eb021"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="0" y="0" width="237" height="15" uuid="b28132c1-5857-4163-a4ef-1b36226a27eb"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00;¤ -#,##0.00">
+				<reportElement style="Detail" x="237" y="0" width="80" height="15" uuid="224037cc-b151-442d-bb00-52224cc88048"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="Detail" x="317" y="0" width="83" height="15" uuid="910adfb2-6fc5-469b-893f-c44ec51b9833"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_debito}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="400" y="0" width="180" height="15" uuid="4ec371e8-4459-428b-8624-ccc1ba35379d"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COLUMN_4}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="580" y="0" width="220" height="15" uuid="26ff0050-c0ec-4d76-8003-e285815842e5"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COLUMN_5}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

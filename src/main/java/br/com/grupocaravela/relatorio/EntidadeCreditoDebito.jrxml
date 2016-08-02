@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-07-25T16:44:47 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EntidadeCreditoDebito" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="861db333-a12b-48be-8c84-4e5b628442e4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GESTOR"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Z2VzdG9yLnVzdWFyaW8gQVMgLDE1MCwxMjgsNDc0Y2MyMDAtODU5Mi00ZmE3LTk1NWEtZjk5ZjE0&#xA;ODA5MjE1Ow=="/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="LOGO" class="java.awt.Image"/>
+	<parameter name="ENTIDADE" class="java.lang.String"/>
+	<parameter name="DATA_INICIAL_SQL" class="java.lang.String"/>
+	<parameter name="DATA_FINAL_SQL" class="java.lang.String"/>
+	<parameter name="DATA_INICIAL" class="java.lang.String"/>
+	<parameter name="DATA_FINAL" class="java.lang.String"/>
+	<parameter name="MAP" class="java.util.HashMap"/>
+	<parameter name="SALDO" class="java.lang.Double"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.Object"/>
+	<parameter name="CREDITO" class="java.lang.Double"/>
+	<parameter name="DEBITO" class="java.lang.Double"/>
+	<queryString>
+		<![CDATA[SELECT gestor.usuario.nome
+FROM gestor.usuario]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="95">
+			<image>
+				<reportElement x="10" y="0" width="80" height="70" uuid="4463ce08-1414-48cb-b370-e3d6f38fa4a3"/>
+				<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="216" y="0" width="370" height="30" uuid="0f47815a-cf53-441f-9a85-9b6f7d93dacb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Dialog" size="20"/>
+				</textElement>
+				<text><![CDATA[Relação de créditos / débitos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="31" width="560" height="30" uuid="b64d6f76-786f-4a75-9af1-a542e47a445e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ENTIDADE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="31" width="78" height="30" uuid="56ffaf22-d34c-47a9-9196-ace0e5a4614b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="16"/>
+				</textElement>
+				<text><![CDATA[Entidade:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="61" width="50" height="30" uuid="dc80a863-f80b-4b0e-9912-45934bacac8a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="16"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="300" y="61" width="100" height="30" uuid="c9c2e5bd-9e84-4c3b-872e-615ebd820085"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DATA_INICIAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="61" width="50" height="30" uuid="0d6be15d-1459-4d46-b8a6-bc995f5688b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Dialog" size="16"/>
+				</textElement>
+				<text><![CDATA[até]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="61" width="100" height="30" uuid="679d40e2-16e8-4c94-9b42-d471e2c0de93"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DATA_FINAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="23">
+			<subreport overflowType="Stretch">
+				<reportElement x="0" y="0" width="801" height="20" uuid="a0b357c3-6a83-4be5-a4c5-7bb1a006b105">
+					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()==1)]]></printWhenExpression>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{MAP}]]></parametersMapExpression>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubCredito.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="25">
+			<subreport>
+				<reportElement x="0" y="0" width="802" height="20" uuid="8a65e4cb-f63d-43c1-9991-dc0eafcf55a3">
+					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()==1)]]></printWhenExpression>
+				</reportElement>
+				<parametersMapExpression><![CDATA[$P{MAP}]]></parametersMapExpression>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SubDebito.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="42" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="197" height="20" uuid="8360b45b-74a2-4280-9f65-08defc86fe53"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="680" y="0" width="80" height="20" uuid="b77efbb5-f674-4809-9825-9392e7caace9"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="760" y="0" width="42" height="20" uuid="c5a4d313-f013-4978-9298-df541560ffa6"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="21" width="801" height="15" uuid="79bce3b3-5920-4f1c-bd3d-86269f410d92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Gestor - Sistema desenvolvido e mantido pelo Grupo Caravela - www.grupocaravela.com.br]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="136">
+			<rectangle>
+				<reportElement x="0" y="0" width="803" height="90" uuid="fb8ccb1d-81c5-46f6-b504-4a79c1e06479"/>
+			</rectangle>
+			<textField pattern="¤ #,##0.00;¤ -#,##0.00">
+				<reportElement x="590" y="60" width="212" height="24" uuid="092d7144-aad7-4d8f-9d2b-9dc9baff8faf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SALDO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="540" y="60" width="46" height="24" uuid="2e3e1fbd-d371-4ec6-a391-526c6615abb8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Dialog" size="12"/>
+				</textElement>
+				<text><![CDATA[Saldo:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="1" y="96" width="197" height="20" uuid="6600d743-19e3-424f-b722-0efd5637ac64"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="117" width="801" height="15" uuid="17b09acd-9d25-42d1-8463-de81ab42bd5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Gestor - Sistema desenvolvido e mantido pelo Grupo Caravela - www.grupocaravela.com.br]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="681" y="96" width="80" height="20" uuid="36ac4e76-0499-44db-9cae-2d10b107af59"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="761" y="96" width="42" height="20" uuid="62f1a006-b0fb-4161-911d-81300c6ce05d"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="521" y="4" width="65" height="24" uuid="ce2f4ef4-09bd-4298-af48-b0e65eafed82"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Dialog" size="12"/>
+				</textElement>
+				<text><![CDATA[Crédito:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="29" width="65" height="24" uuid="c7af2e48-0794-4671-b732-28380fc55389"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Dialog" size="12"/>
+				</textElement>
+				<text><![CDATA[Débito:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00;¤ -#,##0.00">
+				<reportElement x="590" y="29" width="210" height="24" uuid="32c3bfe8-4604-4789-b6d2-bb0245695669"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DEBITO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00;¤ -#,##0.00">
+				<reportElement x="590" y="4" width="210" height="24" uuid="3b29a449-abb2-4329-a9a9-0f73ad83e2bc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CREDITO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>
