@@ -18,6 +18,7 @@ import br.com.grupocaravela.entidade.Entidade;
 import br.com.grupocaravela.entidade.Pessoa;
 import br.com.grupocaravela.util.ConectaBanco;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -50,9 +51,16 @@ public class ChamaRelatorio {
 	        jasper = (JasperReport) JRLoader.loadObject(arquivo);
 
 	        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper, map, conn);
-
-	        JasperViewer jv = new JasperViewer(jasperPrint, false);
-	        jv.setVisible(true);
+	        
+	        
+	        try {
+	        	JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio.pdf");
+	        	java.awt.Desktop.getDesktop().open( new File( "relatorio.pdf" ) );
+			} catch (Exception e) {
+				JasperViewer jv = new JasperViewer(jasperPrint, false);
+		        jv.setVisible(true);
+			}
+	        
 
 	    }	
 	    
@@ -72,8 +80,13 @@ public class ChamaRelatorio {
 
 	        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper, map, conn);
 
-	        JasperViewer jv = new JasperViewer(jasperPrint, false);
-	        jv.setVisible(true);
+	        try {
+	        	JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio.pdf");
+	        	java.awt.Desktop.getDesktop().open( new File( "relatorio.pdf" ) );
+			} catch (Exception e) {
+				JasperViewer jv = new JasperViewer(jasperPrint, false);
+		        jv.setVisible(true);
+			}
 
 	    }	
 	    
@@ -97,8 +110,13 @@ public class ChamaRelatorio {
 
 	        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper, map, conn);
 
-	        JasperViewer jv = new JasperViewer(jasperPrint, false);
-	        jv.setVisible(true);
+	        try {
+	        	JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio.pdf");
+	        	java.awt.Desktop.getDesktop().open( new File( "relatorio.pdf" ) );
+			} catch (Exception e) {
+				JasperViewer jv = new JasperViewer(jasperPrint, false);
+		        jv.setVisible(true);
+			}
 
 	    }	
 	    
@@ -144,8 +162,13 @@ public class ChamaRelatorio {
 
 	        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper, map, conn);
 
-	        JasperViewer jv = new JasperViewer(jasperPrint, false);
-	        jv.setVisible(true);
+	        try {
+	        	JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio.pdf");
+	        	java.awt.Desktop.getDesktop().open( new File( "relatorio.pdf" ) );
+			} catch (Exception e) {
+				JasperViewer jv = new JasperViewer(jasperPrint, false);
+		        jv.setVisible(true);
+			}
 
 	    }	
 	    
@@ -195,8 +218,13 @@ public class ChamaRelatorio {
 
 	        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper, map, conn);
 
-	        JasperViewer jv = new JasperViewer(jasperPrint, false);
-	        jv.setVisible(true);
+	        try {
+	        	JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio.pdf");
+	        	java.awt.Desktop.getDesktop().open( new File( "relatorio.pdf" ) );
+			} catch (Exception e) {
+				JasperViewer jv = new JasperViewer(jasperPrint, false);
+		        jv.setVisible(true);
+			}
 
 	    }	
 	    
@@ -241,8 +269,13 @@ public class ChamaRelatorio {
 
 	        JasperPrint jasperPrint = JasperFillManager.fillReport(jasper, map, conn);
 
-	        JasperViewer jv = new JasperViewer(jasperPrint, false);
-	        jv.setVisible(true);
+	        try {
+	        	JasperExportManager.exportReportToPdfFile(jasperPrint, "relatorio.pdf");
+	        	java.awt.Desktop.getDesktop().open( new File( "relatorio.pdf" ) );
+			} catch (Exception e) {
+				JasperViewer jv = new JasperViewer(jasperPrint, false);
+		        jv.setVisible(true);
+			}
 
 	    }	
 	    
